@@ -68,3 +68,10 @@ jobs:
          -Danypoint.username="$ID" \
          -Danypoint.password="$SECRET"\
          -Denv="$ENV"
+      run: |
+        artifactName=$(ls *.jar | head -1)
+        mvn deploy -DmuleDeploy\
+         -Dmule.artifact=$artifactName \
+         -Danypoint.username="$ID" \
+         -Danypoint.password="$SECRET"\
+         -Denv="$ENV"
