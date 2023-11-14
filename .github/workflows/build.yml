@@ -56,29 +56,22 @@ jobs:
         name: artifacts
     
     - name: publish to exchange
-      env:      
-        ID: ${{ secrets.anypoint_platform_username }}
-        SECRET: ${{ secrets.anypoint_platform_password }}
-        ENV: ${{secrets.ENV}}
        
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy \
+        --settings .maven/settings.xml
          -Dmule.artifact=$artifactName \
-         -Danypoint.username="$ID" \
-         -Danypoint.password="$SECRET"\
-         -Denv="$ENV"
+         -Dclient.id=eee2687d16574abaa3721842859e1d47\
+         -Dclient.secret=5D22C5185fC946FC94774355fc139085\
+         
 
     - name: Deploy to Sandbox(ch2.0)
-      env:      
-        ID: ${{ secrets.anypoint_platform_username }}
-        SECRET: ${{ secrets.anypoint_platform_password }}
-        ENV: ${{secrets.ENV}}
        
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DmuleDeploy\
+         --settings .maven/settings.xml
          -Dmule.artifact=$artifactName \
-         -Danypoint.username="$ID" \
-         -Danypoint.password="$SECRET"\
-         -Denv="$ENV"         
+         -Dclient.id=eee2687d16574abaa3721842859e1d47\
+         -Dclient.secret=5D22C5185fC946FC94774355fc139085\ 
