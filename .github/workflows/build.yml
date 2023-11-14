@@ -55,7 +55,7 @@ jobs:
       with:
         name: artifacts
     
-    - name: Deploy to Sandbox
+    - name: publish to exchange
       env:      
         ID: ${{ secrets.anypoint_platform_username }}
         SECRET: ${{ secrets.anypoint_platform_password }}
@@ -63,8 +63,22 @@ jobs:
        
       run: |
         artifactName=$(ls *.jar | head -1)
-        mvn clean deploy \
+        mvn deploy \
          -Dmule.artifact=$artifactName \
          -Danypoint.username="$ID" \
          -Danypoint.password="$SECRET"\
          -Denv="$ENV"
+
+    - name: Deploy to Sandbox(ch2.0)
+      env:      
+        ID: ${{ secrets.anypoint_platform_username }}
+        SECRET: ${{ secrets.anypoint_platform_password }}
+        ENV: ${{secrets.ENV}}
+       
+      run: |
+        artifactName=$(ls *.jar | head -1)
+        mvn deploy -DmuleDeploy\
+         -Dmule.artifact=$artifactName \
+         -Danypoint.username="$ID" \
+         -Danypoint.password="$SECRET"\
+         -Denv="$ENV"         
