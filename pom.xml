@@ -35,7 +35,7 @@
       					<provider>MC</provider>
       					<environment>${env}</environment>
       					<target>Cloudhub-US-East-2</target>
-      					<muleVersion>${muleVersion}</muleVersion>
+      					<muleVersion>4.4.0</muleVersion>
       					<username>${anypoint.username}</username>
                         <password>${anypoint.password}</password> 
                         <applicationName>mule-gitactions-ch2</applicationName>
